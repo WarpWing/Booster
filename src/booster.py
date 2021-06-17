@@ -34,7 +34,7 @@ class Video():
 
 
 # Actual instance
-for i in range(4): 
+for i in range(6): 
     for i in vidarray:
         x = Video(i)
         threading.Thread(target=x.boost).start()
