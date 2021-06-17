@@ -1,5 +1,6 @@
 import time
 import multiprocessing
+import threading
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
@@ -20,7 +21,6 @@ class Video():
        self.vidurl = vidurl
 
     def boost(video):
-        #print(f"The URL provided is " + video.vidurl) 
         FFO = webdriver.FirefoxOptions() # FFO is FireFox Options
         FFO.headless = True
         FFP = webdriver.FirefoxProfile()
@@ -30,16 +30,11 @@ class Video():
         WebDriverWait(browser, 15).until(EC.element_to_be_clickable((By.XPATH, "//button[@aria-label='Play']"))).click()
         time.sleep(1200)
         browser.quit()
-        
-    
-    def start(video):
-        pool = multiprocessing.Pool(processes=8)
-        inputs = vidarray
-        print(inputs)      
+             
 
 
-# Actual thread initiation 
-x = Video("https://www.youtube.com/watch?v=EkwdBXovh4s")
-x.boost()
-#for i in f:
-    #Video(i)
+# Actual instance
+for i in range(4): 
+    for i in vidarray:
+        x = Video(i)
+        threading.Thread(target=x.boost).start()
