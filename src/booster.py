@@ -28,13 +28,13 @@ class Video():
         browser = webdriver.Firefox(executable_path="./geckodriver",options=FFO,firefox_profile=FFP) # I know I should put variables in another section of the class but they won't recognize the variables. It's only one function so it's fine :)
         browser.get(f"{video.vidurl}")
         WebDriverWait(browser, 15).until(EC.element_to_be_clickable((By.XPATH, "//button[@aria-label='Play']"))).click()
-        time.sleep(60)
+        time.sleep(600)
         browser.quit()
              
 
 
 # Actual instance
-for i in range(6): 
+for i in range(4): 
     for i in vidarray:
         x = Video(i)
         threading.Thread(target=x.boost).start()
